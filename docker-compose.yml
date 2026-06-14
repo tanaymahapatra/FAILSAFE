@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # 1. The PostgreSQL Database
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: failsafe_db
+    healthcheck:
+      # This checks if the DB is ready before telling Docker it's "healthy"
+      test: ["CMD-SHELL", "pg_isready -U myuser -d failsafe_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  # 2. The FastAPI & ML Backend
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app/backend
+      # This URL matches the service name 'db' defined above
+      - DATABASE_URL=postgresql://myuser:mypassword@db:5432/failsafe_db
+    volumes:
+      - ./backend:/app/backend
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # 3. The React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./frontend/src:/app/src
+    depends_on:
+      - backend
+
+# Persistent storage for your database
+volumes:
+  db_data:

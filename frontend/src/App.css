@@ -1,0 +1,493 @@
+/* =========================================
+   1. CSS VARIABLES (DESIGN SYSTEM)
+   ========================================= */
+:root {
+  /* Colors */
+  --primary: #2563EB;
+  /* Royal Blue */
+  --primary-hover: #1D4ED8;
+  --secondary: #0F172A;
+  /* Slate 900 */
+  --background: #F8FAFC;
+  /* Light Slate 50 */
+  --surface: #FFFFFF;
+  /* Pure White */
+
+  /* Status Colors */
+  --success-bg: #D1FAE5;
+  --success-text: #065F46;
+  --error-bg: #FEE2E2;
+  --error-text: #991B1B;
+  --warning-bg: #FEF3C7;
+  --warning-text: #92400E;
+
+  /* Typography Colors */
+  --text-main: #334155;
+  /* Slate 700 */
+  --text-muted: #64748B;
+  /* Slate 500 */
+  --border-light: #E2E8F0;
+  /* Slate 200 */
+
+  /* Layout */
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --transition: all 0.2s ease-in-out;
+}
+
+/* =========================================
+   2. GLOBAL RESET & BASE
+   ========================================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--background);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--secondary);
+  margin-top: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.fw-bold {
+  font-weight: 600;
+}
+
+/* =========================================
+   3. LOGIN VIEW (FULL SCREEN)
+   ========================================= */
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #F0F9FF 0%, #E0E7FF 100%);
+  padding: 20px;
+}
+
+.login-container {
+  background: var(--surface);
+  width: 100%;
+  max-width: 420px;
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-light);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-header h2 {
+  font-size: 28px;
+  letter-spacing: -0.5px;
+  margin-bottom: 5px;
+}
+
+.login-header p {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* =========================================
+   4. DASHBOARD HEADER
+   ========================================= */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.brand h2 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+}
+
+.role-badge {
+  background-color: #DBEAFE;
+  color: #1E3A8A;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.user-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-badge {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* =========================================
+   5. LAYOUT: CARDS & CONTROL PANEL (GRID)
+   ========================================= */
+.control-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .control-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
+
+.card {
+  background: var(--surface);
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.card-header .icon {
+  font-size: 20px;
+}
+
+.helper-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+/* =========================================
+   6. FORMS, INPUTS & BUTTONS
+   ========================================= */
+.input-group,
+.filter-group,
+.upload-block {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--secondary);
+  margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 10px 12px;
+  background-color: #F8FAFC;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--secondary);
+  transition: var(--transition);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  background-color: var(--surface);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+button {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  background-color: #93C5FD;
+  cursor: not-allowed;
+}
+
+.btn-predict {
+  margin-top: 10px;
+  padding: 14px;
+  font-size: 15px;
+  background-color: var(--secondary);
+}
+
+.btn-predict:hover:not(:disabled) {
+  background-color: #000000;
+}
+
+.btn-logout {
+  width: auto;
+  padding: 8px 16px;
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-light);
+}
+
+.btn-logout:hover {
+  background-color: var(--background);
+}
+
+/* =========================================
+   7. STATUS BANNERS & EMPTY STATES
+   ========================================= */
+.status-banner {
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  animation: slideDown 0.3s ease-out;
+}
+
+.status-banner.success {
+  background-color: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid #A7F3D0;
+}
+
+.status-banner.error {
+  background-color: var(--error-bg);
+  color: var(--error-text);
+  border: 1px solid #FECACA;
+}
+
+.status-banner.info {
+  background-color: #EFF6FF;
+  color: #1E3A8A;
+  border: 1px solid #BFDBFE;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #F8FAFC;
+  border: 1px dashed #CBD5E1;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  margin-top: 20px;
+}
+
+.empty-state.success-state {
+  border-style: solid;
+  border-color: #A7F3D0;
+  background-color: #ECFDF5;
+  color: #065F46;
+}
+
+.empty-state.success-state h3 {
+  color: #065F46;
+  margin-bottom: 5px;
+}
+
+/* Loading Spinner Animation */
+.spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(37, 99, 235, 0.2);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px auto;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   8. RESULTS & REPORTING METADATA
+   ========================================= */
+.report-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 24px;
+}
+
+.meta-item {
+  flex: 1;
+  min-width: 150px;
+  background-color: var(--background);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-item .label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.meta-item .value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.meta-item.warning {
+  background-color: #FEF2F2;
+  border-color: #FECACA;
+}
+
+.meta-item.warning .value {
+  color: var(--error-text);
+}
+
+/* =========================================
+   9. RESULTS TABLE
+   ========================================= */
+.table-responsive {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--surface);
+  text-align: left;
+}
+
+.results-table th,
+.results-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.results-table th {
+  background-color: #F8FAFC;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.results-table tbody tr:hover {
+  background-color: #F1F5F9;
+}
+
+.results-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Dynamic Pill Badges */
+.risk-badge {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 20px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* SHAP Feature List styling */
+.shap-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--text-main);
+  line-height: 1.6;
+}
