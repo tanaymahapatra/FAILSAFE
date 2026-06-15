@@ -28,7 +28,7 @@ This is the easiest method and requires zero manual setup of databases or enviro
 ### Method 2: Manual Setup (Without Docker)
 If you prefer to run the application locally without Docker, follow these steps. 
 
-**Prerequisites:** Python 3.11+, Node.js (v18+), and a local PostgreSQL server running.
+**Prerequisites:** Python 3.11+, Node.js (v22), and a local PostgreSQL server running.
 
 **1. Database Setup:**
 *   Create a local PostgreSQL database named `failsafe_db`.
