@@ -5,6 +5,19 @@ Failsafe is an AI-driven, full-stack application designed to predict student aca
 ---
 
 ## 🚀 How to Run the Application
+## 🔐 Authentication & Role-Based Access Control (RBAC)
+
+The application implements Role-Based Access Control (RBAC) to restrict features based on user roles. For local development and testing, pre-configured accounts are defined in `auth.py`.
+
+### Test Credentials & Permissions
+
+| Username | Password | Role | Features / Permissions |
+| :--- | :--- | :--- | :--- |
+| `hod` | `h@12` | Head of Department (HOD) | Can upload **demographic data files** and access full administrative views(for all students). |
+| `teacher1` | `t@1` | Teacher | Can upload **G1 and G2 grade files** for student evaluations and can check predictions of his students . |
+| `teacher2` | `t@2` | Teacher | Can upload **G1 and G2 grade files** for student evaluations and can check predictions of his students. |
+
+> ⚠️ **Security Notice:** These credentials are hardcoded for local testing purposes only. For production deployments, ensure all secrets and user credentials are managed via secure environment variables.
 
 You can run the application either using Docker (Recommended) or manually on your local machine. Before starting, ensure you have created a `.env` file in the root directory with your database credentials and secret key.
 
